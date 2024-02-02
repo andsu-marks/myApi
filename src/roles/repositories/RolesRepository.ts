@@ -16,7 +16,7 @@ export class RolesRepository {
 
     Object.assign(role, {
       name,
-      created_at: new Date(),
+      created_at: new Date()
     });
 
     this.roles.push(role);
