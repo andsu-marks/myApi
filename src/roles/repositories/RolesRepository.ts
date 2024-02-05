@@ -48,7 +48,14 @@ export class RolesRepository {
   }
 
   async findAll({ page, skip, take }: PaginateParams): Promise<RolesPaginateProperties> {
-    const [roles, count] =
+    const [roles, count] = await this.repository.createQueryBuilder().skip(skip).take(take).getManyAndCount();
+    const result = {
+      per_page: take,
+      total: count,
+      current_page: page,
+      data: roles
+    };
+    return result;
   }
 
   async findByName(name: string): Promise<Role | null> {
