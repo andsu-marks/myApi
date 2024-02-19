@@ -1,7 +1,7 @@
-import { RolesRepository } from '@roles/repositories/RolesRepository';
-import { ShowRoleUseCase } from './ShowRoleUseCase';
-import { ShowRoleController } from './ShowRoleController';
+import { RolesRepository } from '@roles/repositories/RolesRepository'
+import { ShowRoleController } from './ShowRoleController'
+import { ShowRoleUseCase } from './ShowRoleUseCase'
 
-const rolesRepository = RolesRepository.getInstance();
-const showRolesUseCase = new ShowRoleUseCase(rolesRepository);
-export const showRolesController = new ShowRoleController(showRolesUseCase);
+const rolesRepository = RolesRepository.getInstance()
+const showRoleUseCase = new ShowRoleUseCase(rolesRepository)
+export const showRolesController = new ShowRoleController(showRoleUseCase)
