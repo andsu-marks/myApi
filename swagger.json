@@ -162,6 +162,62 @@
                       "type": "string"
                     }
                   }
+                },
+                "example":{
+                  "id": "797edf02-cf7d-4ce9-8b99-e58e516c8b4c",
+                  "name": "updated",
+                  "created_at": "2024-02-19T16:19:59.000Z"
+                }
+              }
+            }
+          },
+          "400":{
+            "description": "Bad request."
+          },
+          "404": {
+            "description": "Role not found."
+          }
+        }
+      },
+      "get": {
+        "tags": ["Roles"],
+        "summary": "Find role by ID",
+        "description": "Return roles based on ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identify a role",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "label"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "content": {
+              "application/json":{
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id":{
+                      "type":"string"
+                    },
+                    "name": {
+                      "type":"string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example":{
+                  "id": "797edf02-cf7d-4ce9-8b99-e58e516c8b4c",
+                  "name": "updated",
+                  "created_at": "2024-02-19T16:19:59.000Z"
                 }
               }
             }
