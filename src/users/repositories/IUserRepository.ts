@@ -15,7 +15,7 @@ export type PaginateParams = {
   take: number;
 };
 
-export type UsersPaginateProperties = {
+  export type UsersPaginateProperties = {
   per_page: number;
   total: number;
   current_page: number;
@@ -24,10 +24,10 @@ export type UsersPaginateProperties = {
 
 export interface IUsersRepository {
   create({ name, email, password, isAdmin, role }: CreateUserDTO): Promise<User>
-    save(user: User): Promise<User>
-    findAll({ page, skip, take }: PaginateParams): Promise<UsersPaginateProperties>
-    findById(id: string): Promise<User | null>
-    findByName(name: string): Promise<User | null>
-    findByEmail(email: string): Promise<User | null>
-    delete(user: User): Promise<void>
+  save(user: User): Promise<User>
+  findAll({ page, skip, take }: PaginateParams): Promise<UsersPaginateProperties>
+  findById(id: string): Promise<User | null>
+  findByName(name: string): Promise<User | null>
+  findByEmail(email: string): Promise<User | null>
+  delete(user: User): Promise<void>
 }
