@@ -32,6 +32,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "@types/multer": "^1.4.11",
     "@types/swagger-ui-express": "^4.1.6",
     "@types/uuid": "^9.0.8",
     "bcryptjs": "^2.4.3",
@@ -42,6 +43,7 @@
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
     "reflect-metadata": "^0.2.1",
     "rimraf": "^5.0.5",
     "sqlite3": "^5.1.7",
