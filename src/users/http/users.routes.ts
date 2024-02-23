@@ -4,13 +4,14 @@ import { CreateUserController } from "@users/UseCases/createUser/CreateUserContr
 import { Joi, Segments, celebrate } from "celebrate";
 import { ListUsersController } from "@users/UseCases/listUsers/ListUsersController";
 import { CreateLoginController } from "@users/UseCases/createLogin/CreateLoginController";
+import { isAuthenticated } from "@shared/http/middlewares/isAuthenticated";
 
 const usersRouter = Router();
 const createUserController = container.resolve(CreateUserController);
 const listUserController = container.resolve(ListUsersController);
 const createLoginController = container.resolve(CreateLoginController);
 
-usersRouter.post('/', celebrate({
+usersRouter.post('/', isAuthenticated, celebrate({
   [Segments.BODY]: {
     name: Joi.string().required(),
     email: Joi.string().email().required(),
@@ -22,7 +23,7 @@ usersRouter.post('/', celebrate({
   return createUserController.handle(request, response);
 })
 
-usersRouter.get('/', celebrate({
+usersRouter.get('/', isAuthenticated, celebrate({
   [Segments.QUERY]: {
     page: Joi.number(),
     limit: Joi.number()
