@@ -1,15 +1,20 @@
 import { Router } from "express";
 import { container } from "tsyringe";
-import { CreateUserController } from "@users/UseCases/createUser/CreateUserController";
 import { Joi, Segments, celebrate } from "celebrate";
+import multer from "multer";
+import { CreateUserController } from "@users/UseCases/createUser/CreateUserController";
 import { ListUsersController } from "@users/UseCases/listUsers/ListUsersController";
 import { CreateLoginController } from "@users/UseCases/createLogin/CreateLoginController";
 import { isAuthenticated } from "@shared/http/middlewares/isAuthenticated";
+import uploadConfig from "@config/upload";
+import { UpdateAvatarController } from "@users/UseCases/updateAvatar/UpdateAvatarController";
 
 const usersRouter = Router();
 const createUserController = container.resolve(CreateUserController);
 const listUserController = container.resolve(ListUsersController);
 const createLoginController = container.resolve(CreateLoginController);
+const updateAvatarController = container.resolve(UpdateAvatarController);
+const upload  = multer(uploadConfig);
 
 usersRouter.post('/', isAuthenticated, celebrate({
   [Segments.BODY]: {
@@ -39,6 +44,11 @@ usersRouter.post('/login', celebrate({
   }
 }), (request, response) => {
   return createLoginController.handle(request, response);
+})
+
+usersRouter.patch('/avatar', isAuthenticated, upload.single("avatar"),
+(request, response) => {
+  return updateAvatarController.handle(request, response);
 })
 
 export { usersRouter };
