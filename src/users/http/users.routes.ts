@@ -2,6 +2,7 @@ import { Router } from "express";
 import { container } from "tsyringe";
 import { Joi, Segments, celebrate } from "celebrate";
 import multer from "multer";
+import path from "node:path";
 import { CreateUserController } from "@users/UseCases/createUser/CreateUserController";
 import { ListUsersController } from "@users/UseCases/listUsers/ListUsersController";
 import { CreateLoginController } from "@users/UseCases/createLogin/CreateLoginController";
