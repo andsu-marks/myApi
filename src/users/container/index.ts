@@ -5,6 +5,7 @@ import { UsersRepository } from "@users/repositories/UsersRepository";
 import { ListUsersController } from "@users/UseCases/listUsers/ListUsersController";
 import { CreateLoginController } from "@users/UseCases/createLogin/CreateLoginController";
 import { UpdateAvatarController } from "@users/UseCases/updateAvatar/UpdateAvatarController";
+import { ShowProfileController } from "@users/UseCases/showProfile/ShowProfileController";
 
 container.registerSingleton<IUsersRepository>('UsersRepository', UsersRepository);
 
@@ -12,3 +13,4 @@ container.registerSingleton('CreateUserController', CreateUserController);
 container.registerSingleton('ListUsersController', ListUsersController);
 container.registerSingleton('CreateLoginController', CreateLoginController);
 container.registerSingleton('UpdateAvatarController', UpdateAvatarController);
+container.registerSingleton('ShowProfileController', ShowProfileController);
