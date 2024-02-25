@@ -347,6 +347,79 @@
             "description": "Role not found"
           }
         }
+      },
+      "get":{
+        "tags":["Users"],
+        "summary": "List all users",
+        "description": "Returns all users paginated",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Number of the page",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "example": "page=1"
+            },
+            "style": "deepObject"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of registers per page",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "example": "page=15"
+            },
+            "style": "deepObject"
+          }
+        ],
+        "responses": {
+          "200":{
+            "description": "Success",
+            "content": {
+              "application/json":{
+                "example":{
+                  "per_page": 15,
+                  "total": 2,
+                  "current_page": 1,
+                  "data": [
+                    {
+                      "id": "215adb27-12e1-4743-8593-cf0a40f85e1b",
+                      "name": "User",
+                      "email": "user@mail.com",
+                      "isAdmin": true,
+                      "avatar": "376ed4a9437efbb10209_avatar.jpg",
+                      "created_at": "2024-02-23T14:56:49.000Z",
+                      "role": {
+                          "id": "929e9b55-f5b0-41e0-8ac7-cd6b1ca98206",
+                          "name": "T.I.",
+                          "created_at": "2024-02-23T14:56:48.000Z"
+                      },
+                      "avatar_url": "http://localhost:3000/files/376ed4a9437efbb10209_avatar.jpg"
+                  },
+                  {
+                      "id": "9cec6b13-e5af-4278-b72e-5684ab5ef0cb",
+                      "name": "Jon Doe",
+                      "email": "john@mail.com",
+                      "isAdmin": true,
+                      "avatar": null,
+                      "created_at": "2024-02-25T03:40:26.000Z",
+                      "role": {
+                          "id": "929e9b55-f5b0-41e0-8ac7-cd6b1ca98206",
+                          "name": "T.I.",
+                          "created_at": "2024-02-23T14:56:48.000Z"
+                      },
+                      "avatar_url": null
+                  }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
