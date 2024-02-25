@@ -28,5 +28,4 @@ export class RefreshTokenRepository implements IRefreshTokenRepository {
     refreshToken.valid = false;
     await this.repository.save(refreshToken);
   }
-
 }

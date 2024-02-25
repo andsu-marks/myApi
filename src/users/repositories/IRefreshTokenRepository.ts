@@ -3,7 +3,7 @@ import { RefreshToken } from "@users/entities/RefreshToken";
 export type CreateRefreshTokenDTO = {
   user_id: string;
   token: string;
-  expires: string;
+  expires: Date;
   valid: boolean;
 }
 
