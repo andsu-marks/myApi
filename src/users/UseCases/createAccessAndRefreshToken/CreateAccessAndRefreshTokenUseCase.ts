@@ -1,10 +1,10 @@
+import { inject, injectable } from "tsyringe";
+import jwtConfig from "@config/auth";
+import { sign } from "jsonwebtoken";
 import { AppError } from "@shared/errors/appError";
 import { User } from "@users/entities/User";
 import { IRefreshTokenRepository } from "@users/repositories/IRefreshTokenRepository";
 import { IUsersRepository } from "@users/repositories/IUserRepository";
-import { inject, injectable } from "tsyringe";
-import jwtConfig from "@config/auth";
-import { sign } from "jsonwebtoken";
 
 type CreateAccessAndRefreshTokenDTO = {
   user_id: string;
@@ -18,7 +18,7 @@ type IResponse = {
 }
 
 @injectable()
-export class CreateAccessAndRefreshToken {
+export class CreateAccessAndRefreshTokenUseCase {
   constructor(
     @inject('UsersRepository') private usersRepository: IUsersRepository,
     @inject('RefreshTokenRepository') private refreshTokenRepository: IRefreshTokenRepository

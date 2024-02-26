@@ -10,6 +10,9 @@ import uploadConfig from "@config/upload";
 import { UpdateAvatarController } from "@users/UseCases/updateAvatar/UpdateAvatarController";
 import { ShowProfileController } from "@users/UseCases/showProfile/ShowProfileController";
 import { UpdateProfileController } from "@users/UseCases/updateProfile/UpdateProfileController";
+import { CreateAccessAndRefreshTokenUseCase } from "@users/UseCases/createAccessAndRefreshToken/CreateAccessAndRefreshTokenUseCase";
+import { CreateAccessAndRefreshTokenController } from "@users/UseCases/createAccessAndRefreshToken/CreateAccessAndRefreshTokenController";
+import { addUserInfoToRequest } from "./middlewares/addUserInfoToRequest";
 
 const usersRouter = Router();
 const createUserController = container.resolve(CreateUserController);
@@ -18,6 +21,7 @@ const createLoginController = container.resolve(CreateLoginController);
 const updateAvatarController = container.resolve(UpdateAvatarController);
 const showProfileController = container.resolve(ShowProfileController);
 const updateProfileController = container.resolve(UpdateProfileController);
+const createAccessAndRefreshTokencontroller = container.resolve(CreateAccessAndRefreshTokenController);
 const upload  = multer(uploadConfig);
 
 usersRouter.post('/', isAuthenticated, celebrate({
@@ -48,6 +52,14 @@ usersRouter.post('/login', celebrate({
   }
 }), (request, response) => {
   return createLoginController.handle(request, response);
+})
+
+usersRouter.post('/refresh_token', addUserInfoToRequest, celebrate({
+  [Segments.BODY]: {
+    refresh_token: Joi.string().required()
+  }
+}), (request, response) => {
+  return createAccessAndRefreshTokencontroller.handle(request, response);
 })
 
 usersRouter.patch('/avatar', isAuthenticated, upload.single("avatar"),
