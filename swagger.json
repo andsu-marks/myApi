@@ -757,6 +757,97 @@
           }
         }
       }
+    },
+    "/users/refresh_token":{
+      "post":{
+        "tags": ["Users"],
+        "summary": "User authenticate",
+        "description": "Authentication with refresh token",
+        "requestBody":{
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "refresh_token": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDg5NTc2ODUsImV4cCI6MTcwODk1ODI4NSwic3ViIjoiMjE1YWRiMjctMTJlMS00NzQzLTg1OTMtY2YwYTQwZjg1ZTFiIn0.EFIqZrr4Wk9pdShUR92t_Hr6Tv5UenMZFN-Xk36INlY"                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "isAdmin": {
+                          "type": "boolean"
+                        },
+                        "avatar": {
+                          "type": "string"
+                        },
+                        "avatar_url": {
+                          "type": "string"
+                        },
+                        "created_at": {
+                          "type": "datetime"
+                        },
+                        "avatar_url": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "accessToken": {
+                      "type": "string"
+                    },
+                    "refreshToken": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "user": {
+                    "id": "215adb27-12e1-4743-8593-cf0a40f85e1b",
+                    "name": "Anderson Ramos",
+                    "email": "a@a.com",
+                    "isAdmin": true,
+                    "avatar": "376ed4a9437efbb10209_avatar.jpg",
+                    "created_at": "2024-02-23T14:56:49.000Z",
+                    "avatar_url": "http://localhost:3000/files/376ed4a9437efbb10209_avatar.jpg"
+                },
+                "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDg5NTc2OTksImV4cCI6MTcwODk1NzcwOSwic3ViIjoiMjE1YWRiMjctMTJlMS00NzQzLTg1OTMtY2YwYTQwZjg1ZTFiIn0.tAd18nOatr54xNtovvNQ5k7jErkuNHDvVxWMPNXlJuA",
+                "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDg5NTc2OTksImV4cCI6MTcwODk1ODI5OSwic3ViIjoiMjE1YWRiMjctMTJlMS00NzQzLTg1OTMtY2YwYTQwZjg1ZTFiIn0.aqxTa9SvkBCP8V1bX7Gk_p_8fYizbsm9-AbOhcsE4us"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "Refresh token is invalid/expired"
+          }
+        }
+      }
     }
   }
 }
